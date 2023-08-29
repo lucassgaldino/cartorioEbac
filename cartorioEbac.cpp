@@ -5,12 +5,13 @@
 
 int registro()
 {	
+	int opcao2 = 0;
 	char arquivo[40];
 	char cpf[40];
 	char nome[40];
 	char sobrenome[40];
 	char cargo [40];
-	
+		
 	printf("Insira o CPF (apenas numeros): ");
 	scanf("%s", cpf); //"%s" refere-se a strings
 	
@@ -54,9 +55,30 @@ int registro()
 	fprintf(file,cargo);
 	fclose(file);
 	
-	system("pause");
+	system("cls");
 	
-
+		printf("Inserir outro registro?\n\n");
+		printf("\t1 - sim\n");
+		printf("\t2 - não\n\n\n");
+		printf("opção: \n\n\n");
+			
+		scanf("%d", &opcao2);
+		
+		system("cls");
+			
+		switch(opcao2)
+		{
+		case 1:
+		registro();
+		break;	
+		
+		case2:	
+		printf("Obrigado por utilizar o sistema!\n");
+		return 0;
+		break;
+		}
+	
+	
 }
 
 int consulta()
@@ -85,7 +107,7 @@ int consulta()
 	}
 	
 	system("pause");
-
+	fclose(file);
 }
 
 int deletar()
@@ -106,7 +128,7 @@ int deletar()
 		system("pause");
 	}
 	
-	
+	fclose(file);
 }
 
 
@@ -114,54 +136,64 @@ int main()
 {
 	int opcao=0; //definindo as variaveis
 	int laco=1;
+	char senhadigitada[10]="a";
+	int comparacao;
 	
-	for(laco=1;laco=1;)
+	printf("\tCARTORIO DA EBAC \n\n"); //inicio menu
+	printf("login de administrador!\n\nDigite sua senha: ");
+	scanf("%s",senhadigitada);
+	
+	comparacao = strcmp(senhadigitada, "admin");
+	
+	if(comparacao == 0)
 	{
-		system("cls"); // responsavel por limpar a tele
-		
-		setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
-	
-		printf("\tCARTORIO DA EBAC \n\n"); //inicio menu
-		printf("Escolha a opção desejada do menu:\n\n");
-		printf("\t1 - Registrar novo cadastro\n");
-		printf("\t2 - Consultar registros\n");
-		printf("\t3 - Deletar registro\n");
-		printf("\t4 - Sair do sistema\n\n\n");
-		printf("opção: ");	//fim menu
-	
-		scanf("%d", &opcao);
-	
-		system("cls");
-		
-		switch(opcao)
+		system("cls");	
+		for(laco=1;laco=1;)
 		{
-			case 1: 
-			registro();
-			break;
-			
-			case 2:
-			consulta();
-			break;
-			
-			case 3:
-			deletar();
-			break;
-			
-			case 4:
-			printf("Obrigado por utilizar o sistema!\n");
-			return 0;
-			break;
-			
-			default:
-			printf("Essa opção não esta disponivel. Por favor, escolha uma opção válida.\n");
-			system("pause");
-			break;
-				
-		}
+			system("cls"); // responsavel por limpar a tele
 		
-		
-	}
+			setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
 	
-
-	//printf("Software desenvolvido por Lucas Galdino\n"); 
+		
+			printf("Escolha a opção desejada do menu:\n\n");
+			printf("\t1 - Registrar novo cadastro\n");
+			printf("\t2 - Consultar registros\n");
+			printf("\t3 - Deletar registro\n");
+			printf("\t4 - Sair do sistema\n\n\n");
+			printf("opção: ");	//fim menu
+	
+			scanf("%d", &opcao);
+	
+			system("cls");
+		
+			switch(opcao)
+			{
+				case 1: 
+				registro();
+				break;
+								
+				case 2:
+				consulta();
+				break;
+			
+				case 3:
+				deletar();
+				break;
+			
+				case 4:
+				printf("Obrigado por utilizar o sistema!\n");
+				return 0;
+				break;
+			
+				default:
+				printf("Essa opção não esta disponivel. Por favor, escolha uma opção válida.\n");
+				system("pause");
+				break;
+			}	
+		}	
+	}
+	else
+		printf("Senha incorreta. Tente novamente.");
 }
+
+
